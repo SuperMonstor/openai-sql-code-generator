@@ -2,5 +2,5 @@
 
 ## Dependencies 
 ```
-npm i ts-node cors express 
+npm i ts-node cors express openai
 ```
