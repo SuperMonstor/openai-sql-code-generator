@@ -38,22 +38,33 @@ function App() {
 			console.log(error);
 		}
 	}
-	console.log(chat);
+
+	function clearChat() {
+		setValue("");
+		setChat([]);
+	}
 
 	const filteredUserMessages = chat.filter(
 		(message) => message.role === "user"
 	);
+
+	const latestCode = chat
+		.filter((message) => message.role === "assistant")
+		.pop();
+
 	return (
 		<div className="App">
 			<MessagesDisplay userMessages={filteredUserMessages} />
 
 			<input value={value} onChange={(e) => setValue(e.target.value)} />
-			<CodeDisplay />
+			<CodeDisplay text={latestCode?.content || ""} />
 			<div className="button-container">
 				<button id="get-query" onClick={getQuery}>
 					Get Query!
 				</button>
-				<button id="clear-chat">Clear Chat</button>
+				<button id="clear-chat" onClick={clearChat}>
+					Clear Chat
+				</button>
 			</div>
 		</div>
 	);
